@@ -1,23 +1,24 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import dbConnect from "../../../utils/dbConnect";
-import Apartment from "../../../models/Apartment";
+import { NextApiRequest, NextApiResponse } from "next";
+import { PrismaClient } from "@prisma/client";
 
-dbConnect();
+const prisma = new PrismaClient();
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const { id } = req.query;
 
   if (req.method === "GET") {
-    try {
-      const apartment = await Apartment.findById(id);
-      if (!apartment) {
-        return res.status(404).json({ message: "Apartment not found" });
-      }
+    const apartment = await prisma.apartment.findUnique({
+      where: { id: Number(id) },
+    });
+    if (apartment) {
       res.status(200).json(apartment);
-    } catch (err) {
-      res.status(500).json({ message: err.message });
+    } else {
+      res.status(404).json({ message: "Apartment not found" });
     }
   } else {
-    res.status(405).json({ message: "Method not allowed" });
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
-};
+}

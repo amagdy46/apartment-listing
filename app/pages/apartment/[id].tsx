@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 interface Apartment {
-  _id: string;
+  id: number;
   name: string;
   description: string;
   price: number;

@@ -1,26 +1,29 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import dbConnect from "../../../utils/dbConnect";
-import Apartment from "../../../models/Apartment";
+import { NextApiRequest, NextApiResponse } from "next";
+import { PrismaClient } from "@prisma/client";
 
-dbConnect();
+const prisma = new PrismaClient();
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method === "GET") {
-    try {
-      const apartments = await Apartment.find();
-      res.status(200).json(apartments);
-    } catch (err) {
-      res.status(500).json({ message: err.message });
-    }
+    const apartments = await prisma.apartment.findMany();
+    res.status(200).json(apartments);
   } else if (req.method === "POST") {
-    try {
-      const apartment = new Apartment(req.body);
-      const savedApartment = await apartment.save();
-      res.status(201).json(savedApartment);
-    } catch (err) {
-      res.status(400).json({ message: err.message });
-    }
+    const { name, description, price, location, amenities, images } = req.body;
+    const apartment = await prisma.apartment.create({
+      data: {
+        name,
+        description,
+        price,
+        location,
+        amenities,
+        images,
+      },
+    });
+    res.status(201).json(apartment);
   } else {
-    res.status(405).json({ message: "Method not allowed" });
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
-};
+}
