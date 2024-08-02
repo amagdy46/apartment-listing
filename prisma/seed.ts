@@ -10,6 +10,9 @@ async function main() {
         description: faker.lorem.sentence(),
         price: parseFloat(faker.commerce.price()),
         location: `${faker.location.city()}, ${faker.location.state()}`,
+        bedrooms: faker.number.int({ min: 1, max: 5 }),
+        bathrooms: faker.number.int({ min: 1, max: 3 }),
+        space: faker.number.int({ min: 70, max: 300 }),
         amenities: faker.helpers.arrayElements(
           ["Pool", "Gym", "Wi-Fi", "Parking", "Pet-friendly"],
           3
@@ -21,7 +24,24 @@ async function main() {
             width: 640,
             height: 480,
           }),
-
+          faker.image.urlLoremFlickr({
+            category: "city",
+            keyword: "apartment",
+            width: 640,
+            height: 480,
+          }),
+          faker.image.urlLoremFlickr({
+            category: "city",
+            keyword: "apartment",
+            width: 640,
+            height: 480,
+          }),
+          faker.image.urlLoremFlickr({
+            category: "city",
+            keyword: "apartment",
+            width: 640,
+            height: 480,
+          }),
           faker.image.urlLoremFlickr({
             category: "city",
             keyword: "apartment",

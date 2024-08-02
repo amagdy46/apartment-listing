@@ -13,6 +13,9 @@ model Apartment {
         description String
         price       Float
         location    String
+        bedrooms    Int      @default(2)
+        bathrooms   Int      @default(1)
+        space       Float    @default(100)
         amenities   String[]
         images      String[]
 }
