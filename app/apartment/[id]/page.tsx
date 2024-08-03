@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const prisma = new PrismaClient();
 
-// Fetch apartment data on the server
 async function getApartment(id: string): Promise<Apartment | null> {
   return await prisma.apartment.findUnique({
     where: { id: parseInt(id) },
