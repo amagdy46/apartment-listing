@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { PrismaClient } from "@prisma/client";
+import { FaBed, FaRuler, FaShower } from "react-icons/fa";
 
 const prisma = new PrismaClient();
 
@@ -12,6 +13,9 @@ interface Apartment {
   price: number;
   location: string;
   amenities: string[];
+  bedrooms: number;
+  bathrooms: number;
+  space: number;
   images: string[];
 }
 
@@ -49,27 +53,45 @@ export default async function HomePage() {
                   <p className="leading-relaxed mb-3">
                     {apartment.description}
                   </p>
-                  <div className="flex items-center flex-wrap">
-                    <Link href={`/apartment/${apartment.id}`}>
-                      <p className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">
-                        Learn More
-                        <svg
-                          className="w-4 h-4 ml-2"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M5 12h14"></path>
-                          <path d="M12 5l7 7-7 7"></path>
-                        </svg>
-                      </p>
-                    </Link>
-                    <span className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm">
-                      ${apartment.price}
-                    </span>
+                  <div className="flex items-center justify-between flex-wrap">
+                    <div>
+                      <Link href={`/apartment/${apartment.id}`}>
+                        <p className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">
+                          View Details
+                          <svg
+                            className="w-4 h-4 ml-2"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            fill="none"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M5 12h14"></path>
+                            <path d="M12 5l7 7-7 7"></path>
+                          </svg>
+                        </p>
+                      </Link>
+                    </div>
+                    <div className="flex  text-gray-500">
+                      <span className="px-3 border-r-2">
+                        ${apartment.price}
+                      </span>
+                      <div className="flex items-center align-middle px-3 border-r-2">
+                        <span className="mr-2">{apartment.bedrooms}</span>
+                        <FaBed />
+                      </div>
+                      <div className="flex items-center align-middle px-3 border-r-2">
+                        <span className="mr-2">{apartment.bathrooms}</span>
+                        <FaShower />
+                      </div>
+                      <div className="flex items-center align-middle px-3">
+                        <span className="mr-2">
+                          {apartment.space}M<sup>2</sup>
+                        </span>
+                        <FaRuler />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
