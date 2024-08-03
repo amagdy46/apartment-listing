@@ -17,38 +17,14 @@ async function main() {
           ["Pool", "Gym", "Wi-Fi", "Parking", "Pet-friendly"],
           3
         ),
-        images: [
+        images: Array.from({ length: 10 }, () =>
           faker.image.urlLoremFlickr({
             category: "city",
             keyword: "apartment",
             width: 640,
             height: 480,
-          }),
-          faker.image.urlLoremFlickr({
-            category: "city",
-            keyword: "apartment",
-            width: 640,
-            height: 480,
-          }),
-          faker.image.urlLoremFlickr({
-            category: "city",
-            keyword: "apartment",
-            width: 640,
-            height: 480,
-          }),
-          faker.image.urlLoremFlickr({
-            category: "city",
-            keyword: "apartment",
-            width: 640,
-            height: 480,
-          }),
-          faker.image.urlLoremFlickr({
-            category: "city",
-            keyword: "apartment",
-            width: 640,
-            height: 480,
-          }),
-        ],
+          })
+        ),
       },
     });
   }
