@@ -4,6 +4,8 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest) {
+
+  await runMiddleware(req, res, cors);
   try {
     const apartments = await prisma.apartment.findMany();
     return NextResponse.json(apartments);
@@ -16,6 +18,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  await runMiddleware(req, res, cors);
   try {
     const { name, description, price, location, amenities, images } =
       await req.json();

@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest) {
+  await runMiddleware(req, res, cors);
   const id = req.nextUrl.pathname.split("/").pop();
 
   try {
