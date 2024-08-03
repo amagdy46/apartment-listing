@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import cors, { runMiddleware } from "@/app/middlewares/cors";
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest, res: NextResponse) {
   await runMiddleware(req, res, cors);
   const id = req.nextUrl.pathname.split("/").pop();
 
