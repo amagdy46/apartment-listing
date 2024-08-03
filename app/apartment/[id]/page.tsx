@@ -1,22 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import { Apartment, PrismaClient } from "@prisma/client";
 import ApartmentSlider from "../../components/ApartmentSlider";
 import { FaBed, FaRuler, FaShower } from "react-icons/fa";
 import Link from "next/link";
 
 const prisma = new PrismaClient();
-
-interface Apartment {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  bedrooms: number;
-  bathrooms: number;
-  space: number; // in sqft
-  location: string;
-  amenities: string[];
-  images: string[];
-}
 
 // Fetch apartment data on the server
 async function getApartment(id: string): Promise<Apartment | null> {
