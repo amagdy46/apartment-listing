@@ -36,8 +36,8 @@ export default async function ApartmentDetails({
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex flex-col  gap-4">
+    <div className="container mx-auto p-16">
+      <div className="flex flex-row gap-8">
         <div>
           <ApartmentSlider images={apartment.images} name={apartment.name} />
         </div>
