@@ -65,15 +65,14 @@ const ApartmentSlider: React.FC<ApartmentSliderProps> = ({ images, name }) => {
   );
 
   return (
-    <>
+    <div className="w-[640px]">
       <div ref={sliderRef} className="keen-slider mb-4">
         {images.map((image, index) => (
-          <div key={index} className="keen-slider__slide relative w-full h-96">
+          <div key={index} className="keen-slider__slide relative h-[480px]">
             <Image
               src={image}
               alt={`${name} - ${index + 1}`}
               layout="fill"
-              objectFit="cover"
               className="rounded-md"
             />
           </div>
@@ -90,13 +89,12 @@ const ApartmentSlider: React.FC<ApartmentSliderProps> = ({ images, name }) => {
               src={image}
               alt={`${name} - ${index + 1} thumbnail`}
               layout="fill"
-              objectFit="cover"
               className="rounded-md"
             />
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
