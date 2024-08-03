@@ -1,17 +1,17 @@
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient: client } = require("@prisma/client");
 
-const prisma = new PrismaClient();
+const prismaClient = new client();
 
 async function clearDatabase() {
   try {
     // Delete all apartments
-    await prisma.apartment.deleteMany();
+    await prismaClient.apartment.deleteMany();
 
     console.log("Database cleared successfully");
   } catch (error) {
     console.error("Error clearing database:", error);
   } finally {
-    await prisma.$disconnect();
+    await prismaClient.$disconnect();
   }
 }
 
