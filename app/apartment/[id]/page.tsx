@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import ApartmentSlider from "../../components/ApartmentSlider";
 import { FaBed, FaRuler, FaShower } from "react-icons/fa";
+import Link from "next/link";
 
 const prisma = new PrismaClient();
 
@@ -37,6 +38,11 @@ export default async function ApartmentDetails({
 
   return (
     <div className="container mx-auto p-16">
+      <Link href="/">
+        <p className="text-blue-500 hover:underline mb-4 inline-block">
+          ← Back to Home
+        </p>
+      </Link>
       <div className="flex flex-row gap-8">
         <div>
           <ApartmentSlider images={apartment.images} name={apartment.name} />
