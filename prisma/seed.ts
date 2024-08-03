@@ -7,7 +7,7 @@ async function main() {
     await prisma.apartment.create({
       data: {
         name: faker.location.street(),
-        description: faker.lorem.sentence(),
+        description: faker.lorem.paragraph(),
         price: parseFloat(faker.commerce.price()),
         location: `${faker.location.city()}, ${faker.location.state()}`,
         bedrooms: faker.number.int({ min: 1, max: 5 }),
